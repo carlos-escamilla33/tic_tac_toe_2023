@@ -1,23 +1,32 @@
-const game = {
-    board: [
-        "", "", "",
-        "", "", "",
-        "", "", ""
-    ],
+const boardContainer = document.querySelector("[data-form-container]");
 
-    players: {
-        player1Name: "",
-        player2Name: ""
-    },
-}
+const Gameboard = {
+    gameboard: [
+        "X", "O", "X",
+        "X", "O", "X",
+        "X", "O", "X",
+    ],
+    winningSolutions: [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ],
+};
 
 function renderBoard() {
-    const board = game.board;
-    for (let i = 0; i < board.length; i++) {
-        const square = board[i];
-        const cellElm = createElement("div");
+    const boardLayout = Gameboard.gameboard;
+    for (let i = 0; i < boardLayout.length; i++) {
+        const square = boardLayout[i];
+        const cellElm = document.createElement("div");
         cellElm.textContent = `${square}`;
-
+        cellElm.setAttribute("id", i);
+        boardContainer.appendChild(cellElm);
     };
-    return;
 }
+
+renderBoard();
