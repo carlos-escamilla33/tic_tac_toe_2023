@@ -1,10 +1,8 @@
-const boardContainer = document.querySelector("[data-form-container]");
-
 const Gameboard = {
     gameboard: [
-        "X", "O", "X",
-        "X", "O", "X",
-        "X", "O", "X",
+        "", "", "",
+        "", "", "",
+        "", "", "",
     ],
     winningSolutions: [
         [0, 1, 2],
@@ -16,17 +14,47 @@ const Gameboard = {
         [0, 4, 8],
         [2, 4, 6]
     ],
+    player1Guesses: [],
+    player2Guesses: [],
+    currentTurn: "X",
 };
 
-function renderBoard() {
+function gameStateBoard() {
+    const boardContainer = document.querySelector("[data-form-container]");
     const boardLayout = Gameboard.gameboard;
     for (let i = 0; i < boardLayout.length; i++) {
         const square = boardLayout[i];
         const cellElm = document.createElement("div");
         cellElm.textContent = `${square}`;
-        cellElm.setAttribute("id", i);
+        cellElm.setAttribute("id", `${i}`);
+        cellElm.setAttribute("class", "square");
         boardContainer.appendChild(cellElm);
     };
 }
 
-renderBoard();
+function swapTurn() {
+    Gameboard.currentTurn = Gameboard.currentTurn === "X" ? "O" : "X";
+    console.log(Gameboard.currentTurn);
+}
+
+function addSymbolToBoard(event) {
+    if (event.target.textContent == "") {
+        event.target.textContent = Gameboard.currentTurn;
+    }
+    swapTurn();
+}
+
+function renderState() {
+    gameStateBoard();
+    swapTurn();
+}
+
+renderState();
+
+// 
+
+const squares = document.querySelectorAll('.square');
+
+squares.forEach(square => {
+    square.addEventListener("click", addSymbolToBoard);
+})
