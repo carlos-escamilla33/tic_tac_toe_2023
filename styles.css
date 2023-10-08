@@ -12,19 +12,22 @@ body {
 
 #board {
     display: grid;
-    grid-template-columns: repeat(3, 1fr) ;
-    height: 400px;
-    width: 400px;
+    grid-template-columns: repeat(3, 2fr) ;
+    height: 500px;
+    width: 500px;
 }
 
-#board div {
+.square {
     display: flex;
     flex-direction: column;
     justify-content: center;
     border: 1px solid black; 
     align-items: center;
+    overflow: hidden;
     font-family: 'Roboto', sans-serif;
-    font-size: 70px;
+    font-size: 40px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 #board div:first-child,
@@ -49,3 +52,4 @@ body {
 #player-names input{
     
 }
+

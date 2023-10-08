@@ -38,15 +38,16 @@ function swapTurn() {
 }
 
 function addSymbolToBoard(event) {
+    let currCell = event.target.id;
     if (event.target.textContent == "") {
         event.target.textContent = Gameboard.currentTurn;
     }
+    Gameboard.gameboard[currCell] = Gameboard.currentTurn;
     swapTurn();
 }
 
 function renderState() {
     gameStateBoard();
-    swapTurn();
 }
 
 renderState();
